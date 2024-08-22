@@ -2,7 +2,7 @@
 import configparser
 import os
 
-QuantizationMode  =   'LSQ'
+QuantizationMode  =   "LSQ"
 
 
 import torch

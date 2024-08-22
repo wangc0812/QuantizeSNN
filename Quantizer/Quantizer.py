@@ -1,20 +1,17 @@
 # read configuration file as global settings
-import configparser
-import os
 import torch
 import torch.nn as nn
 import math
 import numpy as np
 
-config = configparser.ConfigParser()
-config.read(os.getenv('CONFIG'))
-QuantizationMode    =   config['Quantization']['mode']
-WeightPrecision     =   int(config['Quantization']['weightprecision'])
-InputPrecision      =   int(config['Quantization']['inputprecision'])
-ErrorPrecision      =   int(config['Quantization']['errorprecision'])
-GradientPrecision   =   int(config['Quantization']['gradientPrecision'])
-WeightMapping       =   config['Quantization']['weightmapping']
-InputMapping        =   config['Quantization']['inputmapping']
+
+QuantizationMode    =   "LSQ"
+WeightPrecision     =   7
+InputPrecision      =   7
+ErrorPrecision      =   -1
+GradientPrecision   =   -1
+WeightMapping       =   "Sign"
+InputMapping        =   "Sign"
 
 class Quantizer(nn.Module):
     def __init__(self, quantization_mode=QuantizationMode, weight_precision=WeightPrecision,
